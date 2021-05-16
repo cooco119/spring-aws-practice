@@ -16,3 +16,17 @@
 ## 작업 목록
 
 *커밋 단위가 아니라 작업일 단위로 기록됩니다*
+
+
+## 발견한 문제
+
+- lombok configuration
+
+    - gradle 6.1.1 버전을 사용했는데, 책에 있는 대로 하면 `Variable xx not initialized in the default constructor` 문제가 발생한다.
+      
+    - gradle 5.x.x 버전 이후로는 build.gradle에 다음과 같은 설정이 추가로 필요하다
+    
+    > compileOnly('org.projectlombok:lombok')
+    > annotationProcessor('org.projectlombok:lombok') // 추가 필요
+  
+    *(참조 : [블로그 아티클](https://deeplify.dev/back-end/spring/lombok-required-args-constructor-initialize-error#variable-not-initialized-in-the-default-constructor))*
