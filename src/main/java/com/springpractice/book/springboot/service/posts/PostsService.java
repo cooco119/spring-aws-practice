@@ -2,6 +2,7 @@ package com.springpractice.book.springboot.service.posts;
 
 import com.springpractice.book.springboot.domain.posts.Posts;
 import com.springpractice.book.springboot.domain.posts.PostsRepository;
+import com.springpractice.book.springboot.web.dto.PostsListResponseDto;
 import com.springpractice.book.springboot.web.dto.PostsResponseDto;
 import com.springpractice.book.springboot.web.dto.PostsSaveRequestDto;
 import com.springpractice.book.springboot.web.dto.PostsUpdateRequestDto;
@@ -42,5 +43,20 @@ public class PostsService {
     public List<PostsResponseDto> findAll() {
         List<Posts> all = postsRepository.findAll();
         return all.stream().map(posts -> new PostsResponseDto(posts)).collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("There is no posts with given id=" + id));
+
+        postsRepository.delete(posts);
     }
 }
