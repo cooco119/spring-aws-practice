@@ -1,6 +1,6 @@
 FROM openjdk:14
 
-ENV OAUTH_CONFIG_PATH="~/config/application-oauth.properties";
+ENV OAUTH_CONFIG_PATH="/config/";
 
 WORKDIR /app
 COPY . .
@@ -12,5 +12,6 @@ RUN ./gradlew build
 RUN cp "./build/libs/spring-aws-practice-1.0-SNAPSHOT.jar" /app/bin
 EXPOSE 8080
 ENTRYPOINT java -jar \
+-Dspring.config.location=$OAUTH_CONFIG_PATH \
 -Dspring.profiles.active=prod \
 "/app/bin/spring-aws-practice-1.0-SNAPSHOT.jar"
