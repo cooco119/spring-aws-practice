@@ -1,7 +1,7 @@
 
 buildscript {
     ext {
-        springBootVersion = "2.1.7.RELEASE"
+        springBootVersion = "2.2.13.RELEASE"
     }
     repositories{
         mavenCentral()
@@ -25,15 +25,25 @@ repositories {
     jcenter()
 }
 
+bootRun {
+    main = 'com.springpractice.book.Application'
+}
+
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-web')
     compileOnly('org.projectlombok:lombok')
-    compile('org.springframework.boot:spring-boot-starter-mustache')
+    implementation('org.springframework.boot:spring-boot-starter-mustache')
     annotationProcessor('org.projectlombok:lombok')
-    compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile('com.h2database:h2')
-    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
-    compile('org.springframework.session:spring-session-jdbc')
-    testCompile('org.springframework.security:spring-security-test')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('com.h2database:h2')
+    implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
+    implementation('org.springframework.session:spring-session-jdbc')
+    testImplementation('org.springframework.security:spring-security-test')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+bootRun {
+    String activeProfile = System.properties['spring.profiles.active']
+    println "zone: $activeProfile"
+    systemProperty "spring.profiles.active", activeProfile
 }
