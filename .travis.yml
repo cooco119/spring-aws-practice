@@ -14,7 +14,7 @@ after_success:
   - pip install --user awscli # install aws cli w/o sudo
   - export PATH=$PATH:$HOME/.local/bin # put aws in the path
   - eval $(aws ecr get-login --region ap-northeast-2) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
-  - docker build -t spring-aws-practice .
+  - docker build -t spring-aws-practice -f prod.Dockerfile .
   - docker tag spring-aws-practice:latest 629446280937.dkr.ecr.ap-northeast-2.amazonaws.com/spring-aws-practice:latest
   - docker push 629446280937.dkr.ecr.ap-northeast-2.amazonaws.com/spring-aws-practice:latest
 

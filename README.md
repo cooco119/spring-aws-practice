@@ -83,5 +83,8 @@
     - volume으로 config 파일 mount하고 env var로 해당 경로 지정 
     - dockerfile 참고
   
+  - aws s3 대신 aws ecr에 이미지 푸시
+    - docker build 와 aws ecr push용 .travis.yml 파일은 다음을 참고했다 (https://gist.github.com/BretFisher/14cd228f0d7e40dae085)
+  
 
   
