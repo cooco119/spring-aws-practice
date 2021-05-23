@@ -19,17 +19,17 @@ aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS
 
 echo "> Pull docker image"
 
-sudo docker pull $IMAGE:$IMAGE_TAG
+docker pull $IMAGE:$IMAGE_TAG
 
 echo "> Stopping container"
 
-sudo docker kill spring-aws-practice
+docker kill spring-aws-practice
 
 echo "> Removing container"
 
-sudo docker rm spring-aws-practice
+docker rm spring-aws-practice
 
 echo "> Starting image"
 
-sudo docker run -d -p $PORT:$PORT -v $CONFIG_PATH:$CONTAINER_INTERNAL_CONFIG_DIR \
+docker run -d -p $PORT:$PORT -v $CONFIG_PATH:$CONTAINER_INTERNAL_CONFIG_DIR \
 -e CONFIG_PATH=$CONTAINER_INTERNAL_CONFIG_PATH --name spring-aws-practice $IMAGE:$IMAGE_TAG
