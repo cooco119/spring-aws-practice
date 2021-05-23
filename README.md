@@ -24,7 +24,14 @@
     - 기본 CRUD
     - 간단 프론트 w. mustache
     - 로그인 w. OAuth2
+  
+- 21.05.19 ~ 23
 
+  - EC2 설정
+  - RDS 설정
+  - Docker 설정
+  - dev, prod 용 application.properties 분리
+  - docker repo를 이용한 배포 설정
 
 ## 발견한 문제
 
@@ -73,6 +80,7 @@
     - 참고 : https://velog.io/@harry-jang/SpringBoot-Gradle%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-profile%EB%B3%84-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0
   
   - application-oauth.properties 파일 container 외부에서 주입하기
+    - volume으로 config 파일 mount하고 env var로 해당 경로 지정 
     - dockerfile 참고
   
 
