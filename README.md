@@ -71,6 +71,10 @@
 
 > spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect
 
+### EC2에 CodeDeploy 설치 시 문제 
+> ruby가 없다고 함
+
+- 참고 : https://docs.aws.amazon.com/ko_kr/codedeploy/latest/userguide/codedeploy-agent-operations-install-linux.html
 
 ## 더 한 것
 

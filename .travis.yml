@@ -9,7 +9,7 @@ branches:
   only:
     - master
 
-after_success:
+script:
   - docker --version  # document the version travis is using
   - pip install --user awscli # install aws cli w/o sudo
   - export PATH=$PATH:$HOME/.local/bin # put aws in the path
@@ -17,6 +17,13 @@ after_success:
   - docker build -t spring-aws-practice -f prod.Dockerfile .
   - docker tag spring-aws-practice:latest 629446280937.dkr.ecr.ap-northeast-2.amazonaws.com/spring-aws-practice:latest
   - docker push 629446280937.dkr.ecr.ap-northeast-2.amazonaws.com/spring-aws-practice:latest
+
+deploy:
+  - provider: codedeploy
+    application: spring-aws-practice
+    deployment_group: spring-aws-practice-group
+    region: ap-northeast-2
+    wait-until-deployed: true
 
 notifications:
   email:
