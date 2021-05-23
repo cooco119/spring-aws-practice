@@ -13,6 +13,10 @@ $CONTAINER_INTERNAL_CONFIG_DIR/application-prod-db.properties
 
 cd $REPOSITORY
 
+echo "> Login to ECR"
+
+aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 629446280937.dkr.ecr.ap-northeast-2.amazonaws.com
+
 echo "> Pull docker image"
 
 sudo docker pull $IMAGE:$IMAGE_TAG
