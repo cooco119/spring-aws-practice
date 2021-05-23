@@ -2,7 +2,7 @@
 
 REPOSITORY=/home/ec2-user/app
 PROJECT_NAME=spring-aws-practice
-IMAGE=markman0510/spring-aws-practice
+IMAGE=629446280937.dkr.ecr.ap-northeast-2.amazonaws.com/spring-aws-practice
 IMAGE_TAG=latest
 
 PORT=8080
