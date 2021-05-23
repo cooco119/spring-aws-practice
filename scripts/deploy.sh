@@ -19,5 +19,5 @@ sudo docker pull $IMAGE:$IMAGE_TAG
 
 echo "> Starting image"
 
-sudo docker run -d -p $PORT:$PORT -v $CONFIG_PATH:$CONTAINER_INTERNAL_CONFIG_DIR \
+sudo docker run --restart always -d -p $PORT:$PORT -v $CONFIG_PATH:$CONTAINER_INTERNAL_CONFIG_DIR \
 -e CONFIG_PATH=$CONTAINER_INTERNAL_CONFIG_PATH $IMAGE:$IMAGE_TAG
