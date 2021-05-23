@@ -18,8 +18,26 @@ script:
   - docker tag spring-aws-practice:latest 629446280937.dkr.ecr.ap-northeast-2.amazonaws.com/spring-aws-practice:latest
   - docker push 629446280937.dkr.ecr.ap-northeast-2.amazonaws.com/spring-aws-practice:latest
 
+before_deploy:
+  - mkdir -p before-deplouy
+  - cp scripts/*.sh before-deploy/
+  - cp appspec.yml before-deploy/
+  - cd before-deploy && zip -r before-deploy *
+  - cd ../ & mkdir -p deploy
+  - mv before-deploy/before-deploy.zip deploy/spring-aws-practice-deploy.zip
+
 deploy:
+  - provider: s3
+    bucket: spring-aws-practice-deploy
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait-until-deployed: true
   - provider: codedeploy
+    bucket: spring-aws-practice-deploy
+    key: spring-aws-practice-deploy.zip
+    bundle_type: zip
     application: spring-aws-practice
     deployment_group: spring-aws-practice-group
     region: ap-northeast-2
