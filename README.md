@@ -89,6 +89,8 @@
   
   - aws s3 대신 aws ecr에 이미지 푸시
     - docker build 와 aws ecr push용 .travis.yml 파일은 다음을 참고했다 (https://gist.github.com/BretFisher/14cd228f0d7e40dae085)
+    - ECR은 IAM Policy에서 GetAuthrizationToken만 설정해주고, ECR 액션 관련 설정은 ECR에서 직접 해줘야 한다.
+    > https://docs.aws.amazon.com/AmazonECR/latest/userguide/set-repository-policy.html
   
 
   
