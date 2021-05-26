@@ -28,6 +28,9 @@ function find_idle_port() {
   if [ ${IDLE_PROFILE} == prod1 ]
   then
     echo "8081"
+  elif [ ${IDLE_PROFILE} == prod ]
+  then
+    echo "8080"
   else
     echo "8082"
   fi
