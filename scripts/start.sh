@@ -20,7 +20,7 @@ CONFIG_PATH=$REPOSITORY/configs/
 CONTAINER_INTERNAL_CONFIG_DIR=/config/
 
 
-CONTAINER_INTERNAL_CONFIG_PATH=classpath:/application-$IDLE_PROFILE,\
+CONTAINER_INTERNAL_CONFIG_PATH=classpath:/application-$IDLE_PROFILE.properties,\
 $CONTAINER_INTERNAL_CONFIG_DIR/application-oauth.properties,\
 $CONTAINER_INTERNAL_CONFIG_DIR/application-prod-db.properties
 
@@ -34,11 +34,7 @@ echo "> Pull docker image"
 
 docker pull $IMAGE:$IMAGE_TAG
 
-echo "> Removing container"
-
-docker rm spring-aws-practice
-
-echo "> Starting image with profile ${IDLE_PROFILE}"
+echo "> Starting image with profile ${IDLE_PROFILE} on port ${PORT}"
 
 docker run -d -p $PORT:$PORT -v $CONFIG_PATH:$CONTAINER_INTERNAL_CONFIG_DIR \
 -e CONFIG_PATH=$CONTAINER_INTERNAL_CONFIG_PATH -e PROFILE=$IDLE_PROFILE --name spring-aws-practice-$IDLE_PROFILE $IMAGE:$IMAGE_TAG
