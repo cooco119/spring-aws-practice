@@ -13,9 +13,9 @@ function find_idle_profile() {
 
   if [ ${CURRENT_PROFILE} == prod1 ]
   then
-    IDLE_PROFILE=prod1
-  else
     IDLE_PROFILE=prod2
+  else
+    IDLE_PROFILE=prod1
   fi
 
   echo "${IDLE_PROFILE}"
