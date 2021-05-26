@@ -17,6 +17,8 @@ script:
   - docker build -t spring-aws-practice -f prod.Dockerfile .
   - docker tag spring-aws-practice:latest 629446280937.dkr.ecr.ap-northeast-2.amazonaws.com/spring-aws-practice:latest
   - docker push 629446280937.dkr.ecr.ap-northeast-2.amazonaws.com/spring-aws-practice:latest
+  - docker tag spring-aws-practice:latest 629446280937.dkr.ecr.ap-northeast-2.amazonaws.com/spring-aws-practice:$TRAVIS_BUILD_NUMBER
+  - docker push 629446280937.dkr.ecr.ap-northeast-2.amazonaws.com/spring-aws-practice:$TRAVIS_BUILD_NUMBER
 
 before_deploy:
   - mkdir -p before-deploy

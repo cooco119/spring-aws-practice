@@ -1,6 +1,7 @@
 FROM openjdk:14
 
 ENV CONFIG_PATH="/config/";
+ENV PROFILE="prod"
 
 WORKDIR /app
 COPY . .
@@ -14,5 +15,5 @@ RUN cp "./build/libs/spring-aws-practice-1.0-SNAPSHOT.jar" /app/bin/
 EXPOSE 8080
 ENTRYPOINT java -jar \
 -Dspring.config.location=$CONFIG_PATH \
--Dspring.profiles.active=prod \
+-Dspring.profiles.active=$PROFILE \
 "/app/bin/spring-aws-practice-1.0-SNAPSHOT.jar"
