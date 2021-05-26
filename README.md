@@ -32,6 +32,10 @@
   - Docker 설정
   - dev, prod 용 application.properties 분리
   - docker repo를 이용한 배포 설정
+    
+- 21.05.26
+
+  - 무중단 배포 설정 w. Docker
 
 ## 발견한 문제
 
