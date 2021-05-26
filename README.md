@@ -120,6 +120,10 @@ https://aws.amazon.com/amazon-linux-2/faqs/#Amazon_Linux_Extras
     - docker build 와 aws ecr push용 .travis.yml 파일은 다음을 참고했다 (https://gist.github.com/BretFisher/14cd228f0d7e40dae085)
     - ECR은 IAM Policy에서 GetAuthrizationToken만 설정해주고, ECR 액션 관련 설정은 ECR에서 직접 해줘야 한다.
     > https://docs.aws.amazon.com/AmazonECR/latest/userguide/set-repository-policy.html
-  
+
+  - 무중단 배포 스크립트 작성 관련 추가 작업
+    - 컨테이너 이름에다가 prod1 prod2를 넣고
+    - stop.sh에서 해당 이름으로 컨테이너 스탑 및 삭제
+    - start.sh에서는 해당 이름 및 포트로 컨테이너 시작해주도록 변경
 
   
