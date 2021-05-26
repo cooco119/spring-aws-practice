@@ -9,11 +9,16 @@ PROJECT_NAME=spring-aws-practice
 IMAGE=629446280937.dkr.ecr.ap-northeast-2.amazonaws.com/spring-aws-practice
 IMAGE_TAG=latest
 
+IDLE_PROFILE=$(find_idle_profile)
 PORT=8080
+if [ $IDLE_PROFILE == prod1 ]; then
+  PORT=8081
+else
+  PORT=8082
+fi
 CONFIG_PATH=$REPOSITORY/configs/
 CONTAINER_INTERNAL_CONFIG_DIR=/config/
 
-IDLE_PROFILE=$(find_idle_profile)
 
 CONTAINER_INTERNAL_CONFIG_PATH=classpath:/application-$IDLE_PROFILE,\
 $CONTAINER_INTERNAL_CONFIG_DIR/application-oauth.properties,\
@@ -29,10 +34,6 @@ echo "> Pull docker image"
 
 docker pull $IMAGE:$IMAGE_TAG
 
-echo "> Stopping container"
-
-docker kill spring-aws-practice
-
 echo "> Removing container"
 
 docker rm spring-aws-practice
@@ -40,4 +41,4 @@ docker rm spring-aws-practice
 echo "> Starting image with profile ${IDLE_PROFILE}"
 
 docker run -d -p $PORT:$PORT -v $CONFIG_PATH:$CONTAINER_INTERNAL_CONFIG_DIR \
--e CONFIG_PATH=$CONTAINER_INTERNAL_CONFIG_PATH -e PROFILE=$IDLE_PROFILE --name spring-aws-practice $IMAGE:$IMAGE_TAG
+-e CONFIG_PATH=$CONTAINER_INTERNAL_CONFIG_PATH -e PROFILE=$IDLE_PROFILE --name spring-aws-practice-$IDLE_PROFILE $IMAGE:$IMAGE_TAG
