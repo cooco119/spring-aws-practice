@@ -76,6 +76,35 @@
 
 - 참고 : https://docs.aws.amazon.com/ko_kr/codedeploy/latest/userguide/codedeploy-agent-operations-install-linux.html
 
+### nginx 관련
+### 책과 동일 명령어로 설치 안되는 이슈
+>[ec2-user]$ sudo yum install nginx
+> 
+> Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+> 
+> No package nginx available.
+> 
+> Error: Nothing to do
+> 
+> nginx is available in Amazon Linux Extra topic "nginx1"
+> 
+> To use, run
+> 
+> sudo amazon-linux-extras install nginx1
+>
+> Learn more at
+https://aws.amazon.com/amazon-linux-2/faqs/#Amazon_Linux_Extras
+
+
+- 다음 명령어 사용
+    > sudo amazon-linux-extras install nginx1
+
+### service nginx start 하면 `Starting nginx: [ OK ]` 노출 안됨
+- `sudo systemctl status nginx.service`로 확인 필요
+> Active: active (running) 항목이 있으면 성공
+
+
+
 ## 더 한 것
 
 ### Docker로 배포하기
